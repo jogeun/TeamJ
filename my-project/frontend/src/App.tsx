@@ -23,7 +23,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>{user ? <p>api 테스트 성공</p> : <p>api 테스트 실패</p>}</p>
+        {user ? <p>api 테스트 성공</p> : <p>api 테스트 실패</p>}
+        {user && (
+          <p>
+            응답값:{user["userNo"]}, {user["userName"]}
+          </p>
+        )}
       </header>
     </div>
   );

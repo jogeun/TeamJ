@@ -1,0 +1,60 @@
+.main {
+  background-color: #fff;
+}
+.main-top {
+  padding: 12px;
+  display: flex;
+  flex-direction: row; /*수평 정렬*/
+  justify-content: space-around;
+}
+
+.main-top .logo {
+  width: 27px;
+  height: 27px;
+  flex-grow: 0;
+  margin: 7px;
+  border-radius: 9px;
+  background-color: #8e43e6;
+}
+
+.main-top .search {
+  width: 80%;
+  height: 41px;
+  border-radius: 20px;
+  border: solid 1px #999;
+  background-color: #fff;
+}
+
+.main-content {
+  margin: 0 auto;
+  padding: 15px 30px 30px;
+  height: 589px px;
+}
+.main-content .banner {
+  width: 333px;
+  height: 333px;
+  border-radius: 15px;
+  background-color: #d9d9d9;
+}
+.type-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row; /*수평 정렬*/
+  justify-content: flex-start;
+  margin: 0 auto;
+}
+.type-list-item {
+  margin: 12px;
+}
+.type-list-item .image {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #d9d9d9;
+}
+.type-list-item .title {
+  margin: 6px 0 0;
+  font-size: 12px;
+  text-align: center;
+  color: #999;
+}

@@ -1,0 +1,35 @@
+nav {
+  width: 100%;
+  height: 52px;
+  bottom: 0px;
+  position: absolute;
+  background-color: #fff;
+}
+
+nav ul {
+  margin: 0;
+  list-style: none;
+  padding: 5px;
+}
+nav li {
+  float: left;
+  background-color: rgb(216, 151, 197);
+  margin-left: 52px;
+}
+nav a {
+  color: black;
+  font-size: 15px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.nav a .img {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #d9d9d9;
+  margin: 0 auto;
+}
+.nav a .title {
+  font-size: 8px;
+  text-align: center;
+}

@@ -1,36 +1,17 @@
-import React, { useState, useEffect } from "react";
-import logo from "./logo.svg";
-import axios from "axios";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Nav from "./components/Nav";
+import Main from "./containers/main/MainContainer";
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get("/find/1");
-        setUser(response.data);
-      } catch (error) {
-        console.error("Error fetching user:", error);
-      }
-    };
-
-    fetchUser();
-  }, []);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        {user ? <p>api 테스트 성공</p> : <p>api 테스트 실패</p>}
-        {user && (
-          <p>
-            응답값:{user["userNo"]}, {user["userName"]}
-          </p>
-        )}
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Main />}></Route>
+      </Routes>
+      <Nav />
+    </Router>
   );
 }
 

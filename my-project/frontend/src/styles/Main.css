@@ -1,11 +1,11 @@
 .main {
-  background-color: #fff;
 }
 .main-top {
   padding: 12px;
   display: flex;
   flex-direction: row; /*수평 정렬*/
   justify-content: space-around;
+  background-color: #fff;
 }
 
 .main-top .logo {
@@ -25,12 +25,22 @@
   background-color: #fff;
 }
 
+.main-top .search svg {
+  width: 22px;
+  height: 22px;
+  margin: 10px 6px;
+  fill: #999;
+  position: absolute;
+  right: 0;
+  padding-right: 28px;
+}
+
 .main-content {
-  margin: 0 auto;
   padding: 15px 30px 30px;
-  height: 589px px;
+  background-color: #fff;
 }
 .main-content .banner {
+  margin: 0 auto;
   width: 333px;
   height: 333px;
   border-radius: 15px;
@@ -41,7 +51,7 @@
   flex-wrap: wrap;
   flex-direction: row; /*수평 정렬*/
   justify-content: flex-start;
-  margin: 0 auto;
+  margin: 4px;
 }
 .type-list-item {
   margin: 12px;
@@ -57,4 +67,9 @@
   font-size: 12px;
   text-align: center;
   color: #999;
+}
+.main-ranking {
+  background-color: #fff;
+  margin-top: 30px;
+  height: 180px;
 }

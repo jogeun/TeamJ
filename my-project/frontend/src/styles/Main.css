@@ -6,6 +6,7 @@
   flex-direction: row; /*수평 정렬*/
   justify-content: space-around;
   background-color: #fff;
+  height: 43px;
 }
 
 .main-top .logo {
@@ -38,6 +39,7 @@
 .main-content {
   padding: 15px 30px 30px;
   background-color: #fff;
+  height: 508px;
 }
 .main-content .banner {
   margin: 0 auto;

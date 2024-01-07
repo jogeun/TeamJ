@@ -7,10 +7,12 @@ function SeatTop() {
       <button className="icon">
         <BackIcon />
       </button>
-      <button className="btn">좌석가격</button>
-      <button className="icon">
-        <RotateIcon />
-      </button>
+      <div className="btn-group">
+        <button className="btn">좌석가격</button>
+        <button className="icon">
+          <RotateIcon />
+        </button>
+      </div>
     </div>
   );
 }

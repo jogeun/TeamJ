@@ -55,6 +55,10 @@
   justify-content: flex-start;
   margin: 4px;
 }
+.type-list a {
+  text-decoration: none;
+  cursor: pointer;
+}
 .type-list-item {
   margin: 12px;
 }

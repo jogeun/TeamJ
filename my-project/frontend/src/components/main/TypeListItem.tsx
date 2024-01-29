@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
-function TypeListItem() {
+import { Type } from "../../types/types";
+
+interface TypeListItemProps {
+  item: Type;
+}
+
+function TypeListItem({ item }: TypeListItemProps) {
   return (
-    <Link to="/show/list">
+    <Link to={`/show/list/${item.id}`}>
       <div className="type-list-item">
-        <div className="image"></div>
-        <div className="title">title</div>
+        <div className="image">{item.image}</div>
+        <div className="title">{item.name}</div>
       </div>
     </Link>
   );

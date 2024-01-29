@@ -1,16 +1,23 @@
 import { Link } from "react-router-dom";
-function ShowListItem() {
+import { Show } from "../../types/types";
+
+interface ShowListItemProps {
+  item: Show;
+}
+function ShowListItem({ item }: ShowListItemProps) {
   return (
-    <Link to="/show/detail">
+    <Link to={`/show/detail/${item.id}`}>
       <div className="show-list-item">
         <div className="left">
-          <div className="img"></div>
+          <div className="img">{item.image}</div>
         </div>
         <div className="right">
           <div className="badge">단독판매</div>
-          <div className="title">2023 성시경 연말 콘서트</div>
-          <div className="place">KSPO DOME</div>
-          <div className="date">2023.12.29 ~ 2023.12.31</div>
+          <div className="title">{item.title}</div>
+          <div className="place">{item.place}</div>
+          <div className="date">
+            {item.startDate} ~ {item.endDate}
+          </div>
         </div>
       </div>
     </Link>

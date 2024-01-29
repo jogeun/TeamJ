@@ -17,11 +17,12 @@ function App() {
     <div className="app">
       <Routes>
         <Route path="/" element={<Main />}></Route>
-        <Route path="/show/list" element={<ShowList />}></Route>
-        <Route path="/show/detail" element={<ShowDetail />}></Route>
+        <Route path="/show/list/:id" element={<ShowList />}></Route>
+        <Route path="/show/detail/:id" element={<ShowDetail />}></Route>
         <Route path="/seat" element={<Seat />}></Route>
       </Routes>
-      {!["/seat", "/show/detail"].includes(location.pathname) && <Nav />}
+      {!["/seat", "/show/detail/1"].includes(location.pathname) && <Nav />}{" "}
+      {/* TODO show/detail include */}
     </div>
   );
 }

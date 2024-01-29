@@ -1,7 +1,16 @@
-function ShowListTop() {
+interface ItemType {
+  id: string;
+  name: string;
+}
+
+interface ShowListTopProps {
+  item: ItemType;
+}
+
+function ShowListTop({ item }: ShowListTopProps) {
   return (
     <div className="show-list-top">
-      <div className="title">콘서트</div>
+      <div className="title">{item.name}</div>
     </div>
   );
 }

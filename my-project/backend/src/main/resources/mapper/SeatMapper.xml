@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Seats">
+    <select id="selectDateUseYN"  parameterType="String" resultType="showsDt">
+        SELECT
+             b.shows_date
+            ,b.shows_time
+            ,IF(count(*) - count(book_id) = 0,'N','Y') useYN
+        FROM shows a
+            INNER JOIN shows_dt b
+                ON a.shows_id = b.shows_id
+            INNER JOIN place_room c
+                ON a.place_id = c.place_id
+            INNER JOIN seats d
+                ON c.place_id = d.place_id
+                AND c.place_room_id = d.place_room_id
+            LEFT OUTER JOIN user_book f
+                ON b.shows_dt_id = f.shows_dt_id
+                AND d.place_id = f.place_id
+                AND d.seats_id = f.seats_id
+                AND f.book_flag not in ( 'P','C')
+        WHERE 1=1
+            AND a.shows_id = #{showsId}
+        GROUP BY b.shows_dt_id, b.shows_date, b.shows_time
+        ORDER BY b.shows_date, b.shows_time
+    </select>
+    <select id="selectSeatsUseY"  parameterType="java.util.HashMap" resultType="shows">
+        SELECT
+             a.shows_id
+            ,b.shows_dt_id "showsDt.showsDtId"
+            ,b.shows_date "showsDt.showsDate"
+            ,b.shows_time "showsDt.showsTime"
+            ,count(*) - count(book_id) "showsDt.useYSeats"
+        FROM shows a
+            INNER JOIN shows_dt b
+                ON a.shows_id = b.shows_id
+            INNER JOIN place_room c
+                ON a.place_id = c.place_id
+            INNER JOIN seats d
+                ON c.place_id = d.place_id
+                AND c.place_room_id = d.place_room_id
+            LEFT OUTER JOIN user_book f
+                ON b.shows_dt_id = f.shows_dt_id
+                AND d.place_id = f.place_id
+                AND d.seats_id = f.seats_id
+                AND f.book_flag not in ( 'P','C')
+        WHERE 1=1
+        AND a.shows_id = #{showsId}
+        AND b.shows_date = #{showsDate}
+        GROUP BY b.shows_dt_id, b.shows_date, b.shows_time
+        ORDER BY b.shows_date, b.shows_time
+    </select>
+</mapper>

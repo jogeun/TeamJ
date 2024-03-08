@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Shows">
+    <select id="selectShowList"  parameterType="java.util.HashMap" resultType="shows">
+        SELECT
+            a.shows_id
+            ,a.shows_name
+            ,a.start_date
+            ,a.end_date
+            ,c.place_name "place.placeName"
+        FROM shows A, common_code_dt B, place C
+        WHERE A.shows_type= B.cm_dt_id
+        AND A.place_id = C.place_id
+        AND B.cm_id = #{cmId}
+        AND B.cm_dt_id = #{cmDtId}
+    </select>
+    <select id="selectShowDtList"  parameterType="java.util.HashMap" resultType="shows">
+        SELECT
+            a.shows_name
+            ,a.open_date
+            ,a.open_time
+            ,a.start_date
+            ,a.end_date
+            ,c.place_name "place.placeName"
+            ,a.shows_explain
+            ,a.shows_notice
+            ,a.price
+            ,a.limit_age
+            ,a.show_times
+            ,a.max_shows_cnt
+        FROM shows A, place C
+        WHERE A.place_id = C.place_id
+        AND A.shows_id = #{showsId}
+    </select>
+    <select id="selectShowDtActList"  parameterType="String" resultType="showsDt">
+        SELECT
+        b.shows_id
+        ,b.shows_dt_id
+        ,b.shows_date
+        ,b.shows_time
+        ,b.lead_actor
+        ,b.sub_actor
+        FROM  shows_dt b
+        WHERE b.shows_id = #{showsId}
+        GROUP BY shows_dt_id,shows_date,shows_time
+        ORDER BY shows_date,shows_time
+    </select>
+    <select id="selectUseYSeats"  parameterType="String" resultType="showsDt">
+        SELECT
+             a.shows_id "shows.showsId"
+            ,b.shows_dt_id
+            ,b.shows_date
+            ,b.shows_time
+            ,count(*) - count(book_id) useYSeats
+        FROM shows a
+            INNER JOIN shows_dt b
+                ON a.shows_id = b.shows_id
+            INNER JOIN place_room c
+                ON a.place_id = c.place_id
+            INNER JOIN seats d
+                ON c.place_id = d.place_id
+                AND c.place_room_id = d.place_room_id
+            LEFT OUTER JOIN user_book f
+                ON b.shows_dt_id = f.shows_dt_id
+                AND d.place_id = f.place_id
+                AND d.seats_id = f.seats_id
+                AND f.book_flag not in ( 'P','C')
+        WHERE 1=1
+        AND a.shows_id = #{showsId}
+        AND b.shows_date = #{showsDate}
+        GROUP BY b.shows_dt_id, b.shows_date, b.shows_time
+        ORDER BY b.shows_date, b.shows_time
+    </select>
+    <select id="selectShowSeatsY"  parameterType="java.util.HashMap" resultType="showsDt">
+        SELECT
+            a.shows_name "shows.showsName"
+            , b.shows_date
+            , b.shows_time
+            , b.shows_dt_id
+            , a.place_id "shows.placeId"
+            , d.seats_type "seats.seatsType"
+            , CASE WHEN d.seats_type ='A' THEN 5000 END "showsDt.price"
+            , f.place_id "userBook.placeId"
+            , f.seats_id "userBook.seatsId"
+            , f.shows_dt_id "userBook.showsDtId"
+            , f.book_flag "userBook.bookFlag"
+            , d.seat_row "seats.seatRow"
+            , d.seat_col "seats.seatCol"
+            , d.place_room_id "seats.placeRoomId"
+            , d.place_id "seats.placeId"
+            , d.seats_id "seats.seatsId"
+        FROM shows a
+            INNER JOIN shows_dt b
+            ON a.shows_id = b.shows_id
+            INNER JOIN place_room c
+            ON a.place_id = c.place_id
+            INNER JOIN seats d
+            ON c.place_id = d.place_id
+            AND c.place_room_id = d.place_room_id
+            LEFT OUTER JOIN user_book f
+            ON b.shows_dt_id = f.shows_dt_id
+            AND d.place_id = f.place_id
+            AND d.seats_id = f.seats_id
+            AND f.book_flag not in ( 'P','C')
+        WHERE 1=1
+            AND a.shows_id = #{showsId}
+            AND a.place_id = #{placeId}
+            AND b.shows_date = #{showsDate}
+            AND b.shows_time = #{showsTime}
+        ORDER BY seat_row, seat_col
+    </select>
+</mapper>

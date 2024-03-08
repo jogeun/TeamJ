@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <typeAliases>
+        <typeAlias type="com.teamj.book.domain.CommonCdDtDTO" alias="commonCdDt"></typeAlias>
+        <typeAlias type="com.teamj.book.domain.CommonCdDTO" alias="commonCd"></typeAlias>
+        <typeAlias type="com.teamj.book.domain.ShowsDTO" alias="shows"></typeAlias>
+        <typeAlias type="com.teamj.book.domain.PlaceDTO" alias="place"></typeAlias>
+        <typeAlias type="com.teamj.book.domain.ShowsDtDTO" alias="showsDt"></typeAlias>
+        <typeAlias type="com.teamj.book.domain.PlaceRoomDTO" alias="placeRoom"></typeAlias>
+        <typeAlias type="com.teamj.book.domain.SeatsDTO" alias="seats"></typeAlias>
+        <typeAlias type="com.teamj.book.domain.UserBookDTO" alias="userBook"></typeAlias>
+    </typeAliases>
+</configuration>
